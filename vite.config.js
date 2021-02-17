@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
-import preactRefresh from '@prefresh/vite'
+import { defineConfig } from 'vite';
+import legacy from '@vitejs/plugin-legacy';
+import prefresh from '@prefresh/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +9,10 @@ export default defineConfig({
     jsxFragment: 'Fragment',
     jsxInject: `import { h, Fragment } from 'preact'`
   },
-  plugins: [preactRefresh()]
-})
+  plugins: [
+    prefresh(),
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    })
+  ]
+});
